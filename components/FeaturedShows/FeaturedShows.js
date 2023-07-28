@@ -12,11 +12,6 @@ const FeaturedShows = () => {
       {/* Armo el div contenedor, con GRID */}
       <div className={`grid ${styles.SearchResultsContainer}`}>
         {/* Hago un map: ciclo de repetición. Para que muestre 3 Shows*/}
-        {getShows.map((show) => (
-          <div key={show}>
-            <useAppContext id={show} className={'.col_4'}/>
-          </div>
-        ))}
       </div>
     </>
   );
