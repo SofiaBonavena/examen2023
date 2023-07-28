@@ -9,13 +9,42 @@ const AppProvider = ({ defaultValue = [], children }) => {
   const [loading, setLoading] = useState(true);
   const [showLoading, setShowLoading] = useState(true);
 
+  //1. declaro la funcion handleGetShows y hago llamada a API
   const handleGetShows = async (query) => {
-    console.log(query);
+    try {
+      setLoading(true);
+      const response = await axios.get(
+        `https://api.tvmaze.com/search/shows?q=${query}`,
+      );
+      console.log(response);
+      setShowsData(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+    console.log(setShowsData);
   };
 
+  // useEffect(() => {
+  //   handleGetShows();
+  // }, [query]);
+
+  //2. declaro la funcion handleGetShows y hago llamada a API
   const handleGetSingleShow = async (id) => {
-    console.log(id);
+    try {
+      setShowLoading(true);
+      const response = await axios.get(`https://api.tvmaze.com/shows/${id}`);
+      setSingleShowData(response.data);
+      setShowLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+    console.log(setShowsData);
   };
+
+  // useEffect(() => {
+  //   handleGetShows();
+  // }, [id]);
 
   return (
     <AppContext.Provider

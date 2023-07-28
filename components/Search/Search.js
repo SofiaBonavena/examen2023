@@ -1,8 +1,11 @@
 import React from 'react';
 import styles from './Search.module.css';
 import { Formik } from 'formik';
+import { useAppContext } from '../../contexts/AppContext'; // 1. Importé useAppContext
 
 const Search = () => {
+  const { showsData, handleGetShows, loading } = useAppContext();
+
   return (
     <section>
       <h2>Search shows</h2>
@@ -17,7 +20,7 @@ const Search = () => {
             return errors;
           }}
           onSubmit={(values) => {
-            // O_-
+            handleGetShows(values.show); // 2. llamé a la funcion handleGetShows
           }}
         >
           {({
